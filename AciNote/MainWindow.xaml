@@ -4,9 +4,59 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AciNote"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="350" Width="525" Icon="App.ico">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu>
+            <MenuItem Header="文件(_F)">
+                <MenuItem x:Name="menuNew" Header="新建(_N)"/>
+                <MenuItem x:Name="menuOpen" Header="打开(_O)"/>
+                <MenuItem x:Name="menuSave" Header="保存(_S)"/>
+                <MenuItem x:Name="menuSaveAs" Header="另存为(_A)"/>
+                <Separator/>
+                <MenuItem x:Name="menuPageSetup" Header="页面设置(_U)"/>
+                <MenuItem x:Name="menuPrintPreview" Header="打印预览(_V)"/>
+                <MenuItem x:Name="menuPrint" Header="打印(_P)"/>
+                <Separator/>
+                <MenuItem x:Name="menuExit" Header="退出(_X)" Click="menuExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="编辑(_U)">
+                <MenuItem Header="撤销(_U)" Command="ApplicationCommands.Undo"/>
+                <Separator/>
+                <MenuItem Header="剪切(_T)" Command="ApplicationCommands.Cut"/>
+                <MenuItem Header="复制(_C)" Command="ApplicationCommands.Copy"/>
+                <MenuItem Header="粘贴(_P)" Command="ApplicationCommands.Paste"/>
+                <MenuItem Header="删除(_L)" Command="ApplicationCommands.Delete"/>
+                <Separator/>
+                <MenuItem x:Name="menuFind" Header="查找(_F)" Command="ApplicationCommands.Find"/>
+                <MenuItem x:Name="menuFindNext" Header="查找下一个(_N)" Command="ApplicationCommands.Delete"/>
+                <MenuItem x:Name="menuReplace" Header="替换(_R)" Command="ApplicationCommands.Replace"/>
+                <MenuItem x:Name="menuGoto" Header="转到(_G)" />
+                <Separator/>
+                <MenuItem Header="全选(_A)" Command="ApplicationCommands.SelectAll"/>
+                <MenuItem x:Name="menuDateTime" Header="时间/日期(_D)"/>
+            </MenuItem>
+            <MenuItem Header="格式(_O)">
+                <MenuItem Header="自动换行(_W)"/>
+                <MenuItem Header="字体(_F)"/>
+                <MenuItem Header="字体颜色(_C)"/>
+                <MenuItem Header="背景颜色(_B)"/>
+            </MenuItem>
+            <MenuItem Header="查看(_V)">
+                <MenuItem Header="置顶显示(_W)"/>
+                <MenuItem Header="桌面快捷方式(_F)"/>
+                <MenuItem Header="自动加载最后文件(_C)"/>
+                <MenuItem Header="状态栏(_B)"/>
+            </MenuItem>
+            <MenuItem Header="帮助(_H)">
+                <MenuItem x:Name="menuViewHelp" Header="查看帮助(_H)"/>
+                <MenuItem x:Name="menuAbout" Header="关于(_A)"/>
+            </MenuItem>
+        </Menu>
+        <TextBox Grid.Row="1" />
     </Grid>
 </Window>

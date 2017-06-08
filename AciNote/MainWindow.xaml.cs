@@ -24,5 +24,82 @@ namespace AciNote
         {
             InitializeComponent();
         }
+
+        #region 菜单单击事件
+        private void menuExit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void menuNew_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuOpen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+                
+        }
+
+        private void menuPageSetup_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuPrintPreview_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuPrint_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuFind_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuFindNext_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuReplace_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuGoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuDateTime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuViewHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuAbout_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
