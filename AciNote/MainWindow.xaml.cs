@@ -92,7 +92,9 @@ namespace AciNote
 
         private void menuDateTime_Click(object sender, RoutedEventArgs e)
         {
-
+            tbContent.Focus();
+            Clipboard.SetText(DateTime.Now.ToString());
+            tbContent.Paste();
         }
 
         private void menuViewHelp_Click(object sender, RoutedEventArgs e)
@@ -141,6 +143,21 @@ namespace AciNote
             {
                 logger.Error(ex);
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void menuTopMost_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = sender as MenuItem;
+            if (menu.IsChecked == true)
+            {
+                menu.IsChecked = false;
+                this.Topmost = false;
+            }
+            else
+            {
+                menu.IsChecked = true;
+                this.Topmost = true;
             }
         }
     }

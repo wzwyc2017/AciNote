@@ -25,19 +25,19 @@
                 <MenuItem x:Name="menuExit" Header="退出(_X)" Click="menuExit_Click"/>
             </MenuItem>
             <MenuItem Header="编辑(_U)">
-                <MenuItem Header="撤销(_U)" Command="ApplicationCommands.Undo"/>
+                <MenuItem x:Name="menuUndo" Header="撤销(_U)" Command="ApplicationCommands.Undo"/>
                 <Separator/>
-                <MenuItem Header="剪切(_T)" Command="ApplicationCommands.Cut"/>
-                <MenuItem Header="复制(_C)" Command="ApplicationCommands.Copy"/>
-                <MenuItem Header="粘贴(_P)" Command="ApplicationCommands.Paste"/>
-                <MenuItem Header="删除(_L)" Command="ApplicationCommands.Delete"/>
+                <MenuItem x:Name="menuCut" Header="剪切(_T)" Command="ApplicationCommands.Cut"/>
+                <MenuItem x:Name="menuCopy" Header="复制(_C)" Command="ApplicationCommands.Copy"/>
+                <MenuItem x:Name="menuPaste" Header="粘贴(_P)" Command="ApplicationCommands.Paste"/>
+                <MenuItem x:Name="menuDelete" Header="删除(_L)" Command="ApplicationCommands.Delete"/>
                 <Separator/>
                 <MenuItem x:Name="menuFind" Header="查找(_F)" Command="ApplicationCommands.Find" Click="menuFind_Click"/>
                 <MenuItem x:Name="menuFindNext" Header="查找下一个(_N)" Command="ApplicationCommands.Delete" Click="menuFindNext_Click"/>
                 <MenuItem x:Name="menuReplace" Header="替换(_R)" Command="ApplicationCommands.Replace" Click="menuReplace_Click"/>
                 <MenuItem x:Name="menuGoto" Header="转到(_G)" Click="menuGoto_Click" />
                 <Separator/>
-                <MenuItem Header="全选(_A)" Command="ApplicationCommands.SelectAll"/>
+                <MenuItem x:Name="menuSelectAll" Header="全选(_A)" Command="ApplicationCommands.SelectAll"/>
                 <MenuItem x:Name="menuDateTime" Header="时间/日期(_D)" Click="menuDateTime_Click"/>
             </MenuItem>
             <MenuItem Header="格式(_O)">
@@ -47,7 +47,7 @@
                 <MenuItem Header="背景颜色(_B)"/>
             </MenuItem>
             <MenuItem Header="查看(_V)">
-                <MenuItem Header="置顶显示(_W)"/>
+                <MenuItem x:Name="menuTopMost" Header="置顶显示(_W)" Click="menuTopMost_Click"/>
                 <MenuItem Header="桌面快捷方式(_F)"/>
                 <MenuItem Header="自动加载最后文件(_C)"/>
                 <MenuItem Header="状态栏(_B)"/>
