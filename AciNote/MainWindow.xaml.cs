@@ -1,5 +1,7 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AciNote
 {
@@ -20,6 +21,9 @@ namespace AciNote
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private static Properties.Settings mSettings = Properties.Settings.Default;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -48,7 +52,7 @@ namespace AciNote
 
         private void menuSaveAs_Click(object sender, RoutedEventArgs e)
         {
-                
+
         }
 
         private void menuPageSetup_Click(object sender, RoutedEventArgs e)
@@ -100,6 +104,44 @@ namespace AciNote
         {
 
         }
+
+        private void menuWordWrap_Click(object sender, RoutedEventArgs e)
+        {
+            MenuItem menu = sender as MenuItem;
+            if (menu.IsChecked == true)
+            {
+                menu.IsChecked = false;
+                tbContent.TextWrapping = TextWrapping.NoWrap;
+            }
+            else
+            {
+                menu.IsChecked = true;
+                tbContent.TextWrapping = TextWrapping.Wrap;
+            }
+        }
         #endregion
+
+        private void tbContent_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.Copy;
+            e.Handled = true;
+        }
+
+        private void tbContent_PreviewDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                string fileName = fileNames[0];
+                this.Title = Path.GetFileName(fileName);
+                tbContent.Text = File.ReadAllText(fileName, AppBase.GetFileEncodeType(fileName));
+                tbContent.ScrollToHome();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
