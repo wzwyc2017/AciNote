@@ -27,6 +27,10 @@ namespace AciNote
         public MainWindow()
         {
             InitializeComponent();
+
+            var bounds = mSettings.MainWindowRestoreBounds;
+            this.Width = bounds.Width;
+            this.Height = bounds.Height;
         }
 
         #region 菜单单击事件
@@ -159,6 +163,12 @@ namespace AciNote
                 menu.IsChecked = true;
                 this.Topmost = true;
             }
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            mSettings.MainWindowRestoreBounds = this.RestoreBounds;
+            mSettings.Save();
         }
     }
 }
