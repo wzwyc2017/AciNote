@@ -6,7 +6,10 @@
       <Value Profile="(Default)">50,50,800,600</Value>
     </Setting>
     <Setting Name="Topmost" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="TextWrapping" Type="System.Windows.TextWrapping" Scope="User">
+      <Value Profile="(Default)">Wrap</Value>
     </Setting>
   </Settings>
 </SettingsFile>

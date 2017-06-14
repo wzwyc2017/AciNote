@@ -37,13 +37,25 @@ namespace AciNote.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool Topmost {
             get {
                 return ((bool)(this["Topmost"]));
             }
             set {
                 this["Topmost"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Wrap")]
+        public global::System.Windows.TextWrapping TextWrapping {
+            get {
+                return ((global::System.Windows.TextWrapping)(this["TextWrapping"]));
+            }
+            set {
+                this["TextWrapping"] = value;
             }
         }
     }

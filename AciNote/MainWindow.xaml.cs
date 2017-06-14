@@ -35,6 +35,10 @@ namespace AciNote
             this.Width = bounds.Width;
             this.Height = bounds.Height;
             this.Topmost = menuTopMost.IsChecked = mSettings.Topmost;
+            MainTextBox.TextWrapping = mSettings.TextWrapping;
+            menuWordWrap.IsChecked = (mSettings.TextWrapping == TextWrapping.Wrap);
+
+            CreateNewText();
         }
 
         #region 菜单单击事件
@@ -171,37 +175,14 @@ namespace AciNote
             if (menu.IsChecked == true)
             {
                 menu.IsChecked = false;
-                MainTextBox.TextWrapping = TextWrapping.NoWrap;
+                mSettings.TextWrapping = MainTextBox.TextWrapping = TextWrapping.NoWrap;
             }
             else
             {
                 menu.IsChecked = true;
-                MainTextBox.TextWrapping = TextWrapping.Wrap;
+                mSettings.TextWrapping = MainTextBox.TextWrapping = TextWrapping.Wrap;
             }
-        }
-        #endregion
-
-        private void tbContent_PreviewDragOver(object sender, DragEventArgs e)
-        {
-            e.Effects = DragDropEffects.Copy;
-            e.Handled = true;
-        }
-
-        private void tbContent_PreviewDrop(object sender, DragEventArgs e)
-        {
-            try
-            {
-                string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-                string fileName = fileNames[0];
-                this.Title = Path.GetFileName(fileName);
-                MainTextBox.Text = File.ReadAllText(fileName, AppBase.GetFileEncodeType(fileName));
-                MainTextBox.ScrollToHome();
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex);
-                MessageBox.Show(ex.Message);
-            }
+            mSettings.Save();
         }
 
         private void menuTopMost_Click(object sender, RoutedEventArgs e)
@@ -218,12 +199,38 @@ namespace AciNote
             }
             mSettings.Save();
         }
+        #endregion
+
+        #region 其它事件函数
+        private void MainTextBox_PreviewDragOver(object sender, DragEventArgs e)
+        {
+            e.Effects = DragDropEffects.Copy;
+            e.Handled = true;
+        }
+
+        private void MainTextBox_PreviewDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] fileNames = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+                string fileName = fileNames[0];
+                this.Title = Path.GetFileName(fileName);
+                MainTextBox.Text = File.ReadAllText(fileName, AppBase.GetFileEncodeType(fileName));
+                MainTextBox.ScrollToHome();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             mSettings.MainWindowRestoreBounds = this.RestoreBounds;
             mSettings.Save();
         }
+        #endregion
 
         #region 功能实现函数
         /// <summary>

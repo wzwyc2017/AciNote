@@ -57,6 +57,6 @@
             </MenuItem>
         </Menu>
         <TextBox x:Name="MainTextBox" Grid.Row="1" AcceptsReturn="True" 
-                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" PreviewDragOver="tbContent_PreviewDragOver" PreviewDrop="tbContent_PreviewDrop" />
+                 VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Auto" PreviewDragOver="MainTextBox_PreviewDragOver" PreviewDrop="MainTextBox_PreviewDrop" />
     </Grid>
 </Window>
