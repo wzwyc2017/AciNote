@@ -9,6 +9,11 @@ namespace AciNote
 {
     public class AppBase
     {
+        private const string AppName = "AciNote";
+        private const string ConfigFileName = "config.ini";
+        public static string JcSecretKey = "www.cnsos.net";
+        public static string FileFilter = "文本文件(*.txt)|*.txt|所有文件(*.*)|*.*";
+
         #region 获取文件编码
         /// <summary>
         /// 获取文本文件的编码格式
