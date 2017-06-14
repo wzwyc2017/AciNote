@@ -11,5 +11,17 @@
     <Setting Name="TextWrapping" Type="System.Windows.TextWrapping" Scope="User">
       <Value Profile="(Default)">Wrap</Value>
     </Setting>
+    <Setting Name="FontName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">微软雅黑</Value>
+    </Setting>
+    <Setting Name="FontSize" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">14</Value>
+    </Setting>
+    <Setting Name="Foreground" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
+    </Setting>
+    <Setting Name="Background" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFFFFFFF</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

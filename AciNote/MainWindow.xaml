@@ -42,9 +42,9 @@
             </MenuItem>
             <MenuItem Header="格式(_O)">
                 <MenuItem x:Name="menuWordWrap" Header="自动换行(_W)" Click="menuWordWrap_Click"/>
-                <MenuItem Header="字体(_F)"/>
-                <MenuItem Header="字体颜色(_C)"/>
-                <MenuItem Header="背景颜色(_B)"/>
+                <MenuItem x:Name="menuFont" Header="字体(_F)" Click="menuFont_Click"/>
+                <MenuItem x:Name="menuForeColor" Header="前景色(_C)" Click="menuForeColor_Click"/>
+                <MenuItem x:Name="menuBackColor" Header="背景色(_B)" Click="menuBackColor_Click"/>
             </MenuItem>
             <MenuItem Header="查看(_V)">
                 <MenuItem x:Name="menuTopMost" Header="置顶显示(_W)" Click="menuTopMost_Click"/>

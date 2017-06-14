@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace AciNote
 {
@@ -26,6 +28,17 @@ namespace AciNote
             Encoding r = GetType(fs);
             fs.Close();
             return r;
+        }
+
+        /// <summary>
+        /// 把颜色的字符串值转换成画刷
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static System.Windows.Media.Brush ConvertStringToBrush(string value)
+        {
+            var color = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(value);
+            return new SolidColorBrush(color);
         }
 
         /// <summary>
@@ -103,6 +116,29 @@ namespace AciNote
                 throw new Exception("非预期的byte格式");
             }
             return true;
+        }
+
+        /// <summary>
+        /// 将画刷转换成颜色
+        /// </summary>
+        /// <param name="brush"></param>
+        /// <returns></returns>
+        public static System.Drawing.Color ConvertBrushToColor(System.Windows.Media.Brush brush)
+        {
+            var convert = new System.Drawing.ColorConverter();
+            System.Drawing.Color color = (System.Drawing.Color)(convert.ConvertFromString(brush.ToString()));
+
+            return color;
+        }
+
+        /// <summary>
+        /// 将颜色转换为画刷
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static System.Windows.Media.Brush ConvertColorToBrush(System.Drawing.Color color)
+        {
+            return new SolidColorBrush(System.Windows.Media.Color.FromArgb(color.A, color.R, color.G, color.B));
         }
         #endregion
     }

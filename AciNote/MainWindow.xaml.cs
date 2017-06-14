@@ -1,19 +1,10 @@
 ﻿using Microsoft.Win32;
 using NLog;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 
 namespace AciNote
 {
@@ -36,6 +27,10 @@ namespace AciNote
             this.Height = bounds.Height;
             this.Topmost = menuTopMost.IsChecked = mSettings.Topmost;
             MainTextBox.TextWrapping = mSettings.TextWrapping;
+            MainTextBox.FontFamily = new FontFamily(mSettings.FontName);
+            MainTextBox.FontSize = mSettings.FontSize;
+            MainTextBox.Foreground = AppBase.ConvertStringToBrush(mSettings.Foreground);
+            MainTextBox.Background = AppBase.ConvertStringToBrush(mSettings.Background);
             menuWordWrap.IsChecked = (mSettings.TextWrapping == TextWrapping.Wrap);
 
             CreateNewText();
@@ -198,6 +193,74 @@ namespace AciNote
                 mSettings.Topmost = this.Topmost = menu.IsChecked = true;
             }
             mSettings.Save();
+        }
+
+        private void menuFont_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.FontDialog dlg = new System.Windows.Forms.FontDialog();
+                dlg.Font = new System.Drawing.Font(MainTextBox.FontFamily.ToString(), (float)MainTextBox.FontSize);
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var font = dlg.Font;
+                    MainTextBox.FontFamily = new FontFamily(font.FontFamily.Name);
+                    MainTextBox.FontSize = font.Size;
+
+                    mSettings.FontName = font.FontFamily.Name;
+                    mSettings.FontSize = font.Size;
+                    mSettings.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void menuForeColor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.ColorDialog dlg = new System.Windows.Forms.ColorDialog();
+                dlg.Color = AppBase.ConvertBrushToColor(MainTextBox.Foreground);
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var color = dlg.Color;
+                    MainTextBox.Foreground = AppBase.ConvertColorToBrush(color);
+
+                    mSettings.Foreground = MainTextBox.Foreground.ToString();
+                    mSettings.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void menuBackColor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                System.Windows.Forms.ColorDialog dlg = new System.Windows.Forms.ColorDialog();
+                dlg.Color = AppBase.ConvertBrushToColor(MainTextBox.Background);
+                if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    var color = dlg.Color;
+                    MainTextBox.Background = AppBase.ConvertColorToBrush(color);
+
+                    mSettings.Background = MainTextBox.Background.ToString();
+                    mSettings.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                MessageBox.Show(ex.Message);
+            }
         }
         #endregion
 
