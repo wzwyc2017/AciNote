@@ -48,7 +48,6 @@
             </MenuItem>
             <MenuItem Header="查看(_V)">
                 <MenuItem x:Name="menuTopMost" Header="置顶显示(_W)" Click="menuTopMost_Click"/>
-                <MenuItem Header="桌面快捷方式(_F)"/>
                 <MenuItem Header="自动加载最后文件(_C)"/>
                 <MenuItem Header="状态栏(_B)"/>
             </MenuItem>

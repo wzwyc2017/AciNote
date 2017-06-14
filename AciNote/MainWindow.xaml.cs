@@ -34,6 +34,7 @@ namespace AciNote
             var bounds = mSettings.MainWindowRestoreBounds;
             this.Width = bounds.Width;
             this.Height = bounds.Height;
+            this.Topmost = menuTopMost.IsChecked = mSettings.Topmost;
         }
 
         #region 菜单单击事件
@@ -208,14 +209,14 @@ namespace AciNote
             MenuItem menu = sender as MenuItem;
             if (menu.IsChecked == true)
             {
-                menu.IsChecked = false;
+                mSettings.Topmost = this.Topmost = menu.IsChecked = false;
                 this.Topmost = false;
             }
             else
             {
-                menu.IsChecked = true;
-                this.Topmost = true;
+                mSettings.Topmost = this.Topmost = menu.IsChecked = true;
             }
+            mSettings.Save();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
