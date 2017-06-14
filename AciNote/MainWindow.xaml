@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Menu>
+        <Menu Background="Transparent">
             <MenuItem Header="文件(_F)">
                 <MenuItem x:Name="menuNew" Header="新建(_N)" Click="menuNew_Click"/>
                 <MenuItem x:Name="menuOpen" Header="打开(_O)" Click="menuOpen_Click"/>
