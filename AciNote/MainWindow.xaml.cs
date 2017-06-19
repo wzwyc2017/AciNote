@@ -33,7 +33,75 @@ namespace AciNote
             MainTextBox.Background = AppBase.ConvertStringToBrush(mSettings.Background);
             menuWordWrap.IsChecked = (mSettings.TextWrapping == TextWrapping.Wrap);
 
+            this.Closing += MainWindow_Closing;
+            MainTextBox.TextChanged += MainTextBox_TextChanged;
+
             CreateNewText();
+        }
+
+        private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextIsChanged = true;
+        }
+
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (TextIsChanged)
+            {
+                if (string.IsNullOrEmpty(CurFileName) && string.IsNullOrEmpty(MainTextBox.Text))
+                {
+                    //新文件，并且内容是空，不保存
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(CurFileName) == false)
+                    {
+                        var rst = MessageBox.Show(this, "是否将更改保存到\r\n" + CurFileName + "？", "记事本", MessageBoxButton.YesNoCancel);
+                        if (rst == MessageBoxResult.Yes)
+                        {
+                            if (SaveTextToFile(CurFileName) == false)
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
+                        }
+                        else if (rst == MessageBoxResult.No)
+                        {
+                            //不保存退出
+                        }
+                        else if (rst == MessageBoxResult.Cancel)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        var rst = MessageBox.Show(this, "是否将更改保存到 无标题", "记事本", MessageBoxButton.YesNoCancel);
+                        if (rst == MessageBoxResult.Yes)
+                        {
+                            if (ShowDialogAndSave())
+                            {
+                                //正常保存
+                            }
+                            else
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
+                        }
+                        else if (rst == MessageBoxResult.No)
+                        {
+                            //不保存退出
+                        }
+                        else if (rst == MessageBoxResult.Cancel)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                }
+            }
         }
 
         #region 菜单单击事件
@@ -280,6 +348,7 @@ namespace AciNote
                 this.Title = Path.GetFileName(fileName);
                 MainTextBox.Text = File.ReadAllText(fileName, AppBase.GetFileEncodeType(fileName));
                 MainTextBox.ScrollToHome();
+                CurFileName = fileName;
             }
             catch (Exception ex)
             {
