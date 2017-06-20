@@ -23,6 +23,8 @@ namespace AciNote
             InitializeComponent();
 
             var bounds = mSettings.MainWindowRestoreBounds;
+            this.Left = bounds.Left;
+            this.Top = bounds.Top;
             this.Width = bounds.Width;
             this.Height = bounds.Height;
             this.Topmost = menuTopMost.IsChecked = mSettings.Topmost;
