@@ -13,5 +13,18 @@ namespace AciNote
     /// </summary>
     public partial class App : Application
     {
+        private void Application_Startup(object sender, StartupEventArgs e)
+        {
+            MainWindow win;
+            if (e.Args.Length > 0)
+            {
+                win = new MainWindow(e.Args[0]);
+            }
+            else
+            {
+                win = new MainWindow();
+            }
+            win.Show();
+        }
     }
 }

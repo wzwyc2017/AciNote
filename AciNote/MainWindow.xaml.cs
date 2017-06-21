@@ -18,11 +18,13 @@ namespace AciNote
         private bool TextIsChanged;
         private string CurFileName;
 
-        public MainWindow()
+        public MainWindow(string fileName = null)
         {
             InitializeComponent();
 
             var bounds = mSettings.MainWindowRestoreBounds;
+            this.Left = bounds.Left;
+            this.Top = bounds.Top;
             this.Width = bounds.Width;
             this.Height = bounds.Height;
             this.Topmost = menuTopMost.IsChecked = mSettings.Topmost;
@@ -33,7 +35,14 @@ namespace AciNote
             MainTextBox.Background = AppBase.ConvertStringToBrush(mSettings.Background);
             menuWordWrap.IsChecked = (mSettings.TextWrapping == TextWrapping.Wrap);
 
-            CreateNewText();
+            if (string.IsNullOrEmpty(fileName))
+            {
+                CreateNewText();
+            }
+            else
+            {
+                FormLoadFile(fileName);
+            }
         }
 
         #region 菜单单击事件
