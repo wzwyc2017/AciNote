@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace AciNote
@@ -38,6 +39,8 @@ namespace AciNote
             this.Closing += MainWindow_Closing;
             MainTextBox.TextChanged += MainTextBox_TextChanged;
 
+            MenuCommandBinding();
+
             if (string.IsNullOrEmpty(fileName))
             {
                 CreateNewText();
@@ -46,6 +49,68 @@ namespace AciNote
             {
                 FormLoadFile(fileName);
             }
+        }
+
+        /// <summary>
+        /// 菜单的命令绑定
+        /// </summary>
+        private void MenuCommandBinding()
+        {
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.New,
+                    menuNew_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.Open,
+                    menuOpen_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.Save,
+                    menuSave_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.SaveAs,
+                    menuSaveAs_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
+
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.PrintPreview,
+                    menuPrintPreview_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
+            this.CommandBindings.Add
+            (
+                new CommandBinding
+                (
+                    ApplicationCommands.Print,
+                    menuPrint_Click,
+                    (sender, e) => { e.CanExecute = true; }
+                )
+            );
         }
 
         private void MainTextBox_TextChanged(object sender, TextChangedEventArgs e)

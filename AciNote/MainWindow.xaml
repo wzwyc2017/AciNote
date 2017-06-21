@@ -13,14 +13,14 @@
         </Grid.RowDefinitions>
         <Menu Background="Transparent">
             <MenuItem Header="文件(_F)">
-                <MenuItem x:Name="menuNew" Header="新建(_N)" Click="menuNew_Click"/>
-                <MenuItem x:Name="menuOpen" Header="打开(_O)" Click="menuOpen_Click"/>
-                <MenuItem x:Name="menuSave" Header="保存(_S)" Click="menuSave_Click"/>
-                <MenuItem x:Name="menuSaveAs" Header="另存为(_A)" Click="menuSaveAs_Click"/>
+                <MenuItem x:Name="menuNew" Header="新建(_N)" Command="ApplicationCommands.New"/>
+                <MenuItem x:Name="menuOpen" Header="打开(_O)" Command="ApplicationCommands.Open"/>
+                <MenuItem x:Name="menuSave" Header="保存(_S)" Command="ApplicationCommands.Save"/>
+                <MenuItem x:Name="menuSaveAs" Header="另存为(_A)" Command="ApplicationCommands.SaveAs"/>
                 <Separator/>
                 <MenuItem x:Name="menuPageSetup" Header="页面设置(_U)" Click="menuPageSetup_Click"/>
-                <MenuItem x:Name="menuPrintPreview" Header="打印预览(_V)" Click="menuPrintPreview_Click"/>
-                <MenuItem x:Name="menuPrint" Header="打印(_P)" Click="menuPrint_Click"/>
+                <MenuItem x:Name="menuPrintPreview" Header="打印预览(_V)" Command="ApplicationCommands.PrintPreview"/>
+                <MenuItem x:Name="menuPrint" Header="打印(_P)" Command="ApplicationCommands.Print"/>
                 <Separator/>
                 <MenuItem x:Name="menuExit" Header="退出(_X)" Click="menuExit_Click"/>
             </MenuItem>
@@ -33,7 +33,7 @@
                 <MenuItem x:Name="menuDelete" Header="删除(_L)" Command="ApplicationCommands.Delete"/>
                 <Separator/>
                 <MenuItem x:Name="menuFind" Header="查找(_F)" Command="ApplicationCommands.Find" Click="menuFind_Click"/>
-                <MenuItem x:Name="menuFindNext" Header="查找下一个(_N)" Command="ApplicationCommands.Delete" Click="menuFindNext_Click"/>
+                <MenuItem x:Name="menuFindNext" Header="查找下一个(_N)" Click="menuFindNext_Click"/>
                 <MenuItem x:Name="menuReplace" Header="替换(_R)" Command="ApplicationCommands.Replace" Click="menuReplace_Click"/>
                 <MenuItem x:Name="menuGoto" Header="转到(_G)" Click="menuGoto_Click" />
                 <Separator/>
